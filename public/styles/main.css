@@ -1,0 +1,94 @@
+@import './fontfamily.css';
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --base-color: hsl(243, 42%, 52%);
+    --blossom: hsl(258, 42%, 52%);
+
+    --secondary-color: hsl(from var(--base-color) h s calc(l - 10));
+
+    --text-color: hsl(from var(--base-color) h s calc(l + 5));
+    --subtext-color: hsl(from var(--base-color) h s calc(l + 2));
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    cursor: url("../assets/cursor.png"), auto;
+    background: hsl(from var(--base-color) h s calc(l - 20));
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: hidden;
+    color: var(--text-color);
+    position: relative;
+    z-index: 0;
+    animation: anim_fadeIn 0.5s ease-in-out;
+    font-family: 'Poppins', sans-serif;
+    min-width: 100dvh;
+}
+
+#synthesis {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    border-style: none;
+    z-index: -1;
+}
+
+#synthesis::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: conic-gradient(from var(--angle),
+            var(--base-color),
+            hsl(from var(--base-color) h s calc(l - 25)),
+            var(--base-color));
+    border-radius: 10px;
+    filter: blur(100px);
+    opacity: 1;
+    animation: rotate 7s linear infinite;
+    opacity: 0.5;
+}
+
+@keyframes anim_fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes anim_fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes rotate {
+    to {
+        --angle: 360deg;
+    }
+}

@@ -1,0 +1,172 @@
+/* Nav Bar Group */
+.nav-bar-group {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0px 0px 0px;
+}
+
+.nav-bar-group .align-left {
+    margin-left: 20px;
+    margin-right: auto;
+}
+
+.nav-bar-group .align-right {
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+/* Navigation Bar */
+.nav-bar {
+    background: hsl(from var(--secondary-color) h s calc(l - 20));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border-radius: 1vw;
+    padding: 2.5px;
+    font-size: 3vh;
+    transition: 0.25s ease;
+}
+
+.nav-bar::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(270deg,
+            hsl(from var(--base-color) h s calc(l - 20)),
+            hsl(from var(--secondary-color) h s calc(l - 20)),
+            hsl(from var(--base-color) h s calc(l - 20)));
+    background-size: 300% 100%;
+    background-position: 0% 50%;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+    animation: gradientGlow 3s linear infinite;
+    filter: blur(12px);
+    opacity: 0.5;
+}
+
+.nav-bar:hover {
+    transform: scale(1.05);
+}
+
+.nav-bar:hover::before {
+    opacity: 1;
+}
+
+.nav-bar svg {
+    width: calc(3vw - 1em);
+    margin-left: 0.5vw;
+    margin-right: -0.5vw;
+}
+
+.nav-bar h2 {
+    color: var(--text-color);
+    font-weight: 600;
+    margin: 0.75vh;
+}
+
+.nav-bar p {
+    color: var(--subtext-color);
+    margin: 1vh;
+    margin-left: -0.5vh;
+    font-size: 0.8em;
+}
+
+.nav-bar .align-left,
+.nav-bar .align-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-bar.align-left:hover {
+    transform-origin: top left;
+    cursor: pointer;
+    user-select: none;
+}
+
+.nav-bar.align-right:hover {
+    transform-origin: top right;
+}
+
+.nav-bar.align-left:active {
+    transform: scale(0.95);
+}
+
+.nav-bar .nav-bar-btn {
+    background-color: transparent;
+    color: var(--text-color);
+    border-style: none;
+    padding: 2.5px;
+    border-radius: 0.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5vw;
+    transition: 0.25s ease-in-out;
+    cursor: pointer;
+}
+
+.nav-bar .nav-bar-btn p {
+    font-weight: 500;
+    font-size: 2.25vh;
+    margin: 0;
+    margin-right: 1vw;
+    margin-left: 1vw;
+}
+
+.nav-bar .nav-bar-btn:hover {
+    background-color: hsl(from var(--base-color) h s calc(l - 30));
+}
+
+.nav-bar .nav-bar-btn:active {
+    background-color: hsl(from var(--base-color) h s calc(l - 35));
+    transform: scale(0.95);
+}
+
+.synthesis-text {
+    background: linear-gradient(270deg,
+            var(--base-color),
+            var(--secondary-color),
+            var(--base-color));
+    background-size: 300% 100%;
+    background-position: 0% 50%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 3s linear infinite;
+    filter: brightness(0.85);
+    font-weight: 700;
+}
+
+
+@keyframes gradientGlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: -150% 50%;
+    }
+}
+
+/*
+@keyframes anim_gradientShift {
+    from {
+        background-position: 0%;
+    }
+
+    to {
+        background-position: -150%;
+    }
+}
+*/
