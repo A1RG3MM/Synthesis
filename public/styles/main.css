@@ -37,6 +37,33 @@ body {
     min-width: 100dvh;
 }
 
+.bottom-content {
+    position: fixed;
+    top: 15vh;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.main-frame {
+    background: hsl(from var(--secondary-color) h s calc(l - 20));
+    opacity: 0.75;
+    backdrop-filter: blur(25px);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border-radius: 1vw;
+    font-size: 3vh;
+    transition: 0.25s ease;
+    margin: 1vw 0 5vw 0;
+    width: 90%;
+}
+
 #synthesis {
     position: fixed;
     top: 0;
