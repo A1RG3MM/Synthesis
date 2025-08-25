@@ -5,8 +5,13 @@
 }
 
 :root {
-    --base-color: hsl(243, 42%, 52%);
+    --base-color: var(--black-and-white);
+    --main: hsl(243, 42%, 52%);
     --blossom: hsl(258, 42%, 52%);
+    --void: hsl(258, 39%, 35%);
+    --lavender: hsl(209, 42%, 52%);
+    --lava: hsl(9, 67%, 45%);
+    --black-and-white: hsl(0, 0%, 0%);
 
     --secondary-color: hsl(from var(--base-color) h s calc(l - 10));
 
@@ -37,34 +42,9 @@ body {
     min-width: 100dvh;
 }
 
-.bottom-content {
-    position: fixed;
-    top: 15vh;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-}
 
-.main-frame {
-    background: hsl(from var(--secondary-color) h s calc(l - 20));
-    opacity: 0.75;
-    backdrop-filter: blur(25px);
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    border-radius: 1vw;
-    font-size: 3vh;
-    transition: 0.25s ease;
-    margin: 1vw 0 5vw 0;
-    width: 90%;
-}
-
-#synthesis {
+#synthesis,
+#syn-particles {
     position: fixed;
     top: 0;
     left: 0;
@@ -73,7 +53,10 @@ body {
     width: 100%;
     height: 100%;
     border-style: none;
-    z-index: -1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
 }
 
 #synthesis::before {
@@ -87,12 +70,231 @@ body {
             var(--base-color),
             hsl(from var(--base-color) h s calc(l - 25)),
             var(--base-color));
+    background-attachment: fixed;
+    background-size: 100% 100%;
     border-radius: 10px;
-    filter: blur(100px);
-    opacity: 1;
+    filter: blur(10vw);
     animation: rotate 7s linear infinite;
     opacity: 0.5;
 }
+
+#syn-particles {
+    z-index: -1;
+}
+
+.main-frame {
+    background: hsl(from var(--secondary-color) h s calc(l - 20));
+    opacity: 0.75;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border-radius: 1vw;
+    font-size: 3vh;
+    transition: 0.25s ease;
+    margin: 1vw 0 1.5vw 0;
+    width: 95%;
+    height: 100vh;
+}
+
+.page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* games section */
+
+.game-carousel {
+    display: flex;
+    gap: 1vw;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    width: 85vw;
+    border-radius: 10px;
+    background: transparent;
+    anchor-name: --game-carousel;
+    padding: 2.5vh;
+    margin: 1vw 1vh;
+}
+
+.game-card {
+    flex: 0 0 15vw;
+    height: 15vh;
+    width: 10vw;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 0.5vw;
+    scroll-snap-align: start;
+    cursor: pointer;
+    position: relative;
+    padding: 0.25vw 0.5vh;
+    transition: 0.25s ease;
+}
+
+.game-card::before,
+.game-card::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: conic-gradient(from var(--angle),
+            transparent,
+            hsl(from var(--secondary-color) h s calc(l + 10)),
+            transparent,
+            hsl(from var(--secondary-color) h s calc(l + 10)),
+            transparent);
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    border-radius: 10px;
+    z-index: -1;
+    animation: spin 5s linear infinite;
+    opacity: 0;
+    transition: 0.25s ease;
+}
+
+.game-card::after {
+    filter: blur(10px);
+}
+
+.game-card:hover::after {
+    opacity: 1;
+}
+
+.game-card:hover::before {
+    opacity: 1;
+}
+
+.game-card:hover img {
+    box-shadow: inset 0 1vw 20px rgba(0, 0, 0, 0.6);
+    transition: box-shadow 0.3s ease;
+}
+
+.game-card .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    /* black transparent */
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.game-card:hover .overlay,
+.game-card:hover .title {
+    opacity: 1;
+}
+
+
+.game-card:hover {
+    transform: scale(1.05);
+}
+
+.game-card:active {
+    transform: scale();
+}
+
+
+.game-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+    display: block;
+    position: relative;
+}
+
+.game-card img::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #000;
+}
+
+.game-card .title {
+    font-size: 1vw;
+    font-weight: 600;
+    position: absolute;
+    bottom: 0;
+    right: 10%;
+    border-radius: 5px;
+    color: var(--text-color);
+    z-index: 2;
+    opacity: 0;
+    transition: 0.25s ease;
+    font-style: italic;
+}
+
+
+.game-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.game-carousel::scroll-button(right) {
+    content: "›";
+}
+
+.game-carousel::scroll-button(left) {
+    content: "‹";
+}
+
+.game-carousel::scroll-button(left),
+.game-carousel::scroll-button(right) {
+    position: fixed;
+    position-anchor: --game-carousel;
+    inline-size: 2.5vw;
+    block-size: 5vh;
+    background: hsl(from var(--base-color) h s calc(l - 10));
+    border-radius: 1vw;
+    color: white;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    transition: 0.25s ease;
+}
+
+.game-carousel::scroll-button(left) {
+    position-area: left center;
+    translate: 50% 0;
+}
+
+.game-carousel::scroll-button(right) {
+    position-area: right center;
+    translate: -50% 0;
+}
+
+.game-carousel::scroll-button(left):hover,
+.game-carousel::scroll-button(right):hover {
+    transform: scale(0.9);
+}
+
+.game-carousel::scroll-button(:disabled) {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+
+.game-card h3 {
+    margin: 0;
+    transition: transform 0.4s ease;
+}
+
+
 
 @keyframes anim_fadeIn {
     from {
@@ -114,7 +316,29 @@ body {
     }
 }
 
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @keyframes rotate {
+    to {
+        --angle: 360deg;
+    }
+}
+
+@keyframes spin {
+    from {
+        --angle: 0deg;
+    }
+
     to {
         --angle: 360deg;
     }

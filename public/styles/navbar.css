@@ -1,26 +1,21 @@
 /* Nav Bar Group */
 .nav-bar-group {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    padding: 10px 0px 0px 0px;
+    padding: 10px 0 0 0;
     z-index: 100;
+    width: 95%;
+    margin-top: 2vh;
 }
 
 .nav-bar-group .align-left {
-    margin-left: 20px;
     margin-right: auto;
 }
 
 .nav-bar-group .align-right {
     margin-left: auto;
-    margin-right: 20px;
 }
 
 /* Navigation Bar */
@@ -34,7 +29,8 @@
     border-radius: 1vw;
     padding: 2.5px;
     font-size: 3vh;
-    transition: 0.25s ease;
+    border: 0.2vw solid hsl(from var(--secondary-color) h s calc(l - 10));
+    transition: 0.5s ease;
 }
 
 .nav-bar::before {
@@ -53,6 +49,11 @@
     animation: gradientGlow 3s linear infinite;
     filter: blur(12px);
     opacity: 0.5;
+}
+
+.nav-bar-btn svg {
+    width: 3vw;
+    height: 3vh;
 }
 
 .nav-bar:hover {
@@ -83,10 +84,6 @@
     align-items: center;
 }
 
-.nav-bar.align-left {
-    width: 15vw;
-}
-
 .nav-bar.align-left:hover {
     transform-origin: top left;
     cursor: pointer;
@@ -111,17 +108,17 @@
     justify-content: center;
     align-items: center;
     margin: 0.5vw;
-    transition: 0.25s ease-in-out;
+    transition: 0.5s ease;
     cursor: pointer;
-    width: 10vw;
+    width: 8vw;
 }
 
 .nav-bar .nav-bar-btn p {
     font-weight: 500;
     font-size: 2.25vh;
     margin: 0;
-    margin-left: 1vw;
 }
+
 
 .nav-bar .nav-bar-btn:hover {
     background-color: hsl(from var(--base-color) h s calc(l - 30));
