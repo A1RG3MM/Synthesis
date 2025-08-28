@@ -16,7 +16,7 @@
         <nav class="nav-bar-group">
             <div class="nav-bar align-left">
                 <h2 class="synthesis-text">Synthesis</h2>
-                <p>v1.0</p>
+                <p style="user-select: none;">v1.0</p>
             </div>
             <div class="nav-bar align-right">
                 <button class="nav-bar-btn">
@@ -32,9 +32,11 @@
                 <button class="nav-bar-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-search-icon lucide-search">
-                        <path d="m21 21-4.34-4.34" />
-                        <circle cx="11" cy="11" r="8" />
+                        class="lucide lucide-app-window-icon lucide-app-window">
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <path d="M10 4v4" />
+                        <path d="M2 8h20" />
+                        <path d="M6 4v4" />
                     </svg>
                     <p>Browse</p>
                 </button>
@@ -68,47 +70,55 @@
 
             </div>
             <div class="page games">
+                <h3></h3>
                 <div class="game-carousel">
                     <div class="game-card" id="game-1">
-                        <img src="https://media.indiedb.com/cache/images/games/1/83/82291/thumb_620x2000/1v1.LOL_1.png"
-                            alt="">
-                        <p class="title">1v1.lol</p>
-                    </div>
-                    <div class="game-card" id="game-1">
-                        <img src="https://media.indiedb.com/cache/images/games/1/83/82291/thumb_620x2000/1v1.LOL_1.png"
-                            alt="">
+                        <img src="https://gamepi.netlify.app/1v1lol.jpg" alt="">
                         <div class="overlay"></div>
                         <p class="title">1v1.lol</p>
                     </div>
                     <div class="game-card" id="game-1">
-                        <img src="https://media.indiedb.com/cache/images/games/1/83/82291/thumb_620x2000/1v1.LOL_1.png"
+                        <img src="https://m.media-amazon.com/images/I/41RCIHMHFDL.png" alt="">
+                        <div class="overlay"></div>
+                        <p class="title">2048</p>
+                    </div>
+                    <div class="game-card" id="game-1">
+                        <img src="https://www.meeplemountain.com/wp-content/uploads/2018/07/jetpack-joyride-review-header.jpg"
                             alt="">
+                        <div class="overlay"></div>
+                        <p class="title">Jetpack Joyriders</p>
+                    </div>
+                    <div class="game-card" id="game-1">
+                        <img src="https://gamepi.netlify.app/1v1lol.jpg" alt="">
+                        <div class="overlay"></div>
                         <p class="title">1v1.lol</p>
                     </div>
                     <div class="game-card" id="game-1">
-                        <img src="https://media.indiedb.com/cache/images/games/1/83/82291/thumb_620x2000/1v1.LOL_1.png"
+                        <img src="https://m.media-amazon.com/images/I/41RCIHMHFDL.png" alt="">
+                        <div class="overlay"></div>
+                        <p class="title">2048</p>
+                    </div>
+                    <div class="game-card" id="game-1">
+                        <img src="https://www.meeplemountain.com/wp-content/uploads/2018/07/jetpack-joyride-review-header.jpg"
                             alt="">
+                        <div class="overlay"></div>
+                        <p class="title">Jetpack Joyriders</p>
+                    </div>
+                    <div class="game-card" id="game-1">
+                        <img src="https://gamepi.netlify.app/1v1lol.jpg" alt="">
+                        <div class="overlay"></div>
                         <p class="title">1v1.lol</p>
                     </div>
                     <div class="game-card" id="game-1">
-                        <img src="https://media.indiedb.com/cache/images/games/1/83/82291/thumb_620x2000/1v1.LOL_1.png"
-                            alt="">
-                        <p class="title">1v1.lol</p>
+                        <img src="https://m.media-amazon.com/images/I/41RCIHMHFDL.png" alt="">
+                        <div class="overlay"></div>
+                        <p class="title">2048</p>
                     </div>
                     <div class="game-card" id="game-1">
-                        <img src="https://media.indiedb.com/cache/images/games/1/83/82291/thumb_620x2000/1v1.LOL_1.png"
+                        <img src="https://www.meeplemountain.com/wp-content/uploads/2018/07/jetpack-joyride-review-header.jpg"
                             alt="">
-                        <p class="title">1v1.lol</p>
-                    </div>
-                    <div class="game-card" id="game-1">
-                        <img src="https://media.indiedb.com/cache/images/games/1/83/82291/thumb_620x2000/1v1.LOL_1.png"
-                            alt="">
-                        <p class="title">1v1.lol</p>
-                    </div>
-                    <div class="game-card" id="game-1">
-                        <img src="https://media.indiedb.com/cache/images/games/1/83/82291/thumb_620x2000/1v1.LOL_1.png"
-                            alt="">
-                        <p class="title">1v1.lol</p>
+                        <div class="overlay"></div>
+                        <p class="title">Jetpack Joyriders</p>
                     </div>
                 </div>
             </div>
@@ -122,6 +132,20 @@
     </div>
     <div id="syn-particles"></div>
     <script src="./scripts/particles.js"></script>
+    <script>
+        const observer = new IntersectionObserver(entries => {
+            for (const entry of entries) {
+                if (!entry.isIntersecting || entry.target.classList.contains('show'))
+                    continue;
+                entry.target.classList.add("show");
+            }
+        });
+
+        document.querySelectorAll('.game-card').forEach(card => {
+            observer.observe(card);
+        });
+
+    </script>
 </body>
 
 </html>

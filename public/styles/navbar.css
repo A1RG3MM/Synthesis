@@ -56,6 +56,11 @@
     height: 3vh;
 }
 
+.nav-bar-btn:nth-last-child(1):hover svg {
+    transform: rotate(360deg);
+    transition: transform 2s ease;
+}
+
 .nav-bar:hover {
     transform: scale(1.05);
 }
@@ -108,26 +113,46 @@
     justify-content: center;
     align-items: center;
     margin: 0.5vw;
-    transition: 0.5s ease;
+    transition: 0.4s ease;
     cursor: pointer;
-    width: 8vw;
+    position: relative;
+    overflow: hidden;
 }
 
 .nav-bar .nav-bar-btn p {
     font-weight: 500;
     font-size: 2.25vh;
-    margin: 0;
+    margin: 0 0.5vw 0 0;
+    user-select: none;
 }
 
+.nav-bar .nav-bar-btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to bottom,
+            hsl(from var(--base-color) h s calc(l - 10)),
+            transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    border-radius: inherit;
+}
 
 .nav-bar .nav-bar-btn:hover {
     background-color: hsl(from var(--base-color) h s calc(l - 30));
 }
 
+.nav-bar .nav-bar-btn:hover::after {
+    opacity: 1;
+}
+
 .nav-bar .nav-bar-btn:active {
-    background-color: hsl(from var(--base-color) h s calc(l - 35));
     transform: scale(0.95);
 }
+
 
 .synthesis-text {
     background: linear-gradient(270deg,
@@ -142,6 +167,7 @@
     animation: gradientShift 3s linear infinite;
     filter: brightness(0.85);
     font-weight: 700;
+    user-select: none;
 }
 
 
