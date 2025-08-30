@@ -16,6 +16,3 @@ app.use('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Synthesis is running on port ${port}!\n- http://localhost:${port}`)
 })
-
-// yo ill do this later
-// i forgot most of ts

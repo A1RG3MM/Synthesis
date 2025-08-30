@@ -27,7 +27,7 @@
     justify-content: center;
     align-content: center;
     border-radius: 1vw;
-    padding: 2.5px;
+    padding: 0.25vw 0.25vh;
     font-size: 3vh;
     border: 0.2vw solid hsl(from var(--secondary-color) h s calc(l - 10));
     transition: 0.5s ease;
@@ -107,7 +107,7 @@
     background-color: transparent;
     color: var(--text-color);
     border-style: none;
-    padding: 2.5px;
+    padding: 0.1vw 0.1vh;
     border-radius: 0.5vw;
     display: flex;
     justify-content: center;
