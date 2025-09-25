@@ -5,16 +5,16 @@
 }
 
 :root {
-    --base-color: var(--black-and-white);
-    --main: hsl(243, 42%, 52%);
+    --base-color: var(--main);
+    --main: hsl(243, 42%, 36%);
     --blossom: hsl(258, 42%, 52%);
-    --void: hsl(258, 39%, 35%);
-    --lavender: hsl(209, 42%, 52%);
-    --lava: hsl(9, 67%, 45%);
+    --arcade: hsl(231, 73%, 48%);
+    --lavender: hsl(209, 63%, 61%);
+    --lava: hsl(9, 48%, 33%);
+    --piss: hsl(56, 100%, 32%);
     --black-and-white: hsl(0, 0%, 27%);
 
     --secondary-color: hsl(from var(--base-color) h s calc(l - 10));
-
     --text-color: hsl(from var(--base-color) h s calc(l + 5));
     --subtext-color: hsl(from var(--base-color) h s calc(l + 2));
 }
@@ -106,29 +106,91 @@ body {
     flex-direction: column;
 }
 
+.reg-btn {
+    background: hsl(from var(--secondary-color) h s calc(l - 20));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 0.5vw;
+    color: var(--subtext-color);
+    border: 0.15vw solid hsl(from var(--secondary-color) h s calc(l - 10));
+    font-size: 1.5vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    transition: 0.25s ease;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.reg-btn svg {
+    width: 3vw;
+    height: 4vh;
+    margin-right: -0.5vw;
+}
+
+.reg-btn::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(270deg,
+            hsl(from var(--base-color) h s calc(l - 20)),
+            hsl(from var(--secondary-color) h s calc(l - 20)),
+            hsl(from var(--base-color) h s calc(l - 20)));
+    background-size: 300% 100%;
+    background-position: 0% 50%;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+    animation: gradientGlow 3s linear infinite;
+    filter: blur(12px);
+    opacity: 0.5;
+}
+
+.reg-btn:hover {
+    transform: scale(1.1);
+}
+
+.reg-btn:hover::before {
+    opacity: 1;
+}
+
+.reg-btn:active { transform: scale(1); }
+
+.reg-btn span {
+    margin: 0.5vw;
+}
+
 /* games section */
 .main-frame h2 {
     font-size: 2.5vw;
-    font-weight: 700;
-    font-style: italic;
+    font-weight: 600;
     letter-spacing: 0.5px;
     color: var(--text-color);
     padding: 0;
     text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
     margin: 4.5vh 0;
     transition: 0.5s ease;
+    font-family: 'Chillax', sans-serif;
 }
 
 .games h3 {
     font-weight: 600;
-    font-style: italic;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.25px;
     color: var(--text-color);
     padding: 2.5px;
     text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
     margin: 0;
     margin-right: auto;
     margin-left: 1vw;
+    font-family: 'Chillax', sans-serif;
+}
+
+.search-bar-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .search-bar {
@@ -147,7 +209,8 @@ body {
     text-align: center;
 }
 
-.search-bar:hover, .search-bar:focus {
+.search-bar:hover,
+.search-bar:focus {
     border: 0.2vw solid hsl(from var(--secondary-color) h s calc(l - 5));
     transition: 0.25s ease;
     background: hsl(from var(--secondary-color) h s calc(l - 15));
@@ -180,6 +243,14 @@ body {
     margin-top: -5vh;
     margin-bottom: -2.5vh;
     align-items: center;
+}
+
+.search-results-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .game-card {

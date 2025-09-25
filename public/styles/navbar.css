@@ -8,6 +8,7 @@
     z-index: 100;
     width: 95%;
     margin-top: 2vh;
+    position: relative;
 }
 
 .nav-bar-group .align-left {
@@ -31,6 +32,7 @@
     font-size: 3vh;
     border: 0.2vw solid hsl(from var(--secondary-color) h s calc(l - 10));
     transition: 0.5s ease;
+    position: absolute;
 }
 
 .nav-bar::before {
@@ -82,12 +84,28 @@
     font-size: 0.8em;
 }
 
-.nav-bar .align-left,
-.nav-bar .align-right {
+.nav-bar.align-left,
+.nav-bar.align-right,
+.nav-bar.align-center {
     display: flex;
     justify-content: center;
     align-items: center;
+    top: 0.5vw;
 }
+
+.nav-bar.align-left {
+    left: 0;
+}
+
+.nav-bar.align-right {
+    right: 0;
+    top: 1vw;
+}
+
+.nav-bar.align-center {
+    top: 1vw;
+}
+
 
 .nav-bar.align-left:hover {
     transform-origin: top left;
@@ -152,6 +170,21 @@
 .nav-bar .nav-bar-btn:active {
     transform: scale(0.95);
 }
+
+.widget {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0.25vw;
+}
+
+.widget span, .widget i {
+    font-weight: 600;
+    font-size: 1vw;
+    margin: 0.25vw;
+}
+
+.widget i { rotate: -90deg; }
 
 
 .synthesis-text {

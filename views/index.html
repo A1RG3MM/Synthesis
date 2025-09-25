@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./styles/navbar.css">
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <title>Synthesis</title>
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.0.1/css/all.css">
     <link rel="shortcut icon" href="./assets/images/synthesis.png" type="image/x-icon">
 </head>
 
@@ -16,20 +17,9 @@
         <nav class="nav-bar-group">
             <div class="nav-bar align-left">
                 <h2 class="synthesis-text">Synthesis</h2>
-                <p style="user-select: none;">v1.0</p>
+                <p style="user-select: none; font-size: 1vw; padding: 0.5vw;">[v1.0]</p>
             </div>
-            <div class="nav-bar align-right">
-                <button class="nav-bar-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-home">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
-                        <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-                        <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-                    </svg>
-                    <p>Home</p>
-                </button>
+            <div class="nav-bar align-center">
                 <button class="nav-bar-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -52,7 +42,21 @@
                         <path
                             d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z" />
                     </svg>
-                    <p>Games</p>
+                    <p>Entertainment</p>
+                </button>
+                <button class="nav-bar-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-bot-message-square-icon lucide-bot-message-square">
+                        <path d="M12 6V2H8" />
+                        <path d="M15 11v2" />
+                        <path d="M2 12h2" />
+                        <path d="M20 12h2" />
+                        <path
+                            d="M20 16a2 2 0 0 1-2 2H8.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 4 20.286V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z" />
+                        <path d="M9 11v2" />
+                    </svg>
+                    <p>A.I.</p>
                 </button>
                 <button class="nav-bar-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -65,6 +69,15 @@
                     <p>Settings</p>
                 </button>
             </div>
+            <div class="nav-bar align-right">
+                <div class="widget">
+                    <i class="fa-solid fa-battery-full"></i>
+                    <span id="battery-level">--%</span>
+                    <span>//</span>
+                    <span>10:32 PM</span>
+                </div>
+
+            </div>
         </nav>
         <div class="main-frame">
             <div class="page proxy" style="display: none;">
@@ -73,43 +86,79 @@
             <div class="page games">
                 <br><br><br>
                 <h2>- Total games: 99 -</h2>
-                <input type="text" placeholder="Search..." class="search-bar">
+                <div class="search-bar-wrapper">
+                    <input type="text" placeholder="Search a game..." class="search-bar" id="game-search-bar">
+                    <button class="reg-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-dices-icon lucide-dices">
+                            <rect width="12" height="12" x="2" y="10" rx="2" ry="2" />
+                            <path d="m17.92 14 3.5-3.5a2.24 2.24 0 0 0 0-3l-5-4.92a2.24 2.24 0 0 0-3 0L10 6" />
+                            <path d="M6 18h.01" />
+                            <path d="M10 14h.01" />
+                            <path d="M15 6h.01" />
+                            <path d="M18 9h.01" />
+                        </svg>
+                        <span>Play Random Game</span>
+                    </button>
+                </div>
+                <div class="game-carousel-container" id="search-results-container" style="display: none;">
+                    <h3>Search Results</h3>
+                    <div class="game-carousel search-results-box">
+                        <div class="game-card" id="game-1">
+                            <img src="https://gamepi.netlify.app/1v1lol.jpg" alt="">
+                            <div class="overlay"></div>
+                            <p class="title">1v1.lol</p>
+                        </div>
+                        <div class="game-card" id="game-1">
+                            <img src="https://m.media-amazon.com/images/I/41RCIHMHFDL.png" alt="">
+                            <div class="overlay"></div>
+                            <p class="title">2048</p>
+                        </div>
+                        <div class="game-card" id="game-1">
+                            <img src="https://www.meeplemountain.com/wp-content/uploads/2018/07/jetpack-joyride-review-header.jpg"
+                                alt="">
+                            <div class="overlay"></div>
+                            <p class="title">Jetpack Joyriders</p>
+                        </div>
+                        <div class="game-card" id="game-1">
+                            <img src="https://gamepi.netlify.app/1v1lol.jpg" alt="">
+                            <div class="overlay"></div>
+                            <p class="title">1v1.lol</p>
+                        </div>
+                        <div class="game-card" id="game-1">
+                            <img src="https://m.media-amazon.com/images/I/41RCIHMHFDL.png" alt="">
+                            <div class="overlay"></div>
+                            <p class="title">2048</p>
+                        </div>
+                        <div class="game-card" id="game-1">
+                            <img src="https://www.meeplemountain.com/wp-content/uploads/2018/07/jetpack-joyride-review-header.jpg"
+                                alt="">
+                            <div class="overlay"></div>
+                            <p class="title">Jetpack Joyriders</p>
+                        </div>
+                        <div class="game-card" id="game-1">
+                            <img src="https://gamepi.netlify.app/1v1lol.jpg" alt="">
+                            <div class="overlay"></div>
+                            <p class="title">1v1.lol</p>
+                        </div>
+                        <div class="game-card" id="game-1">
+                            <img src="https://m.media-amazon.com/images/I/41RCIHMHFDL.png" alt="">
+                            <div class="overlay"></div>
+                            <p class="title">2048</p>
+                        </div>
+                        <div class="game-card" id="game-1">
+                            <img src="https://www.meeplemountain.com/wp-content/uploads/2018/07/jetpack-joyride-review-header.jpg"
+                                alt="">
+                            <div class="overlay"></div>
+                            <p class="title">Jetpack Joyriders</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="game-carousel-container">
                     <h3>Featured Games</h3>
                     <div class="game-carousel">
                         <button class="scroll-button left">‹</button>
-                        <div class="game-card" id="game-1">
-                            <img src="https://gamepi.netlify.app/1v1lol.jpg" alt="">
-                            <div class="overlay"></div>
-                            <p class="title">1v1.lol</p>
-                        </div>
-                        <div class="game-card" id="game-1">
-                            <img src="https://m.media-amazon.com/images/I/41RCIHMHFDL.png" alt="">
-                            <div class="overlay"></div>
-                            <p class="title">2048</p>
-                        </div>
-                        <div class="game-card" id="game-1">
-                            <img src="https://www.meeplemountain.com/wp-content/uploads/2018/07/jetpack-joyride-review-header.jpg"
-                                alt="">
-                            <div class="overlay"></div>
-                            <p class="title">Jetpack Joyriders</p>
-                        </div>
-                        <div class="game-card" id="game-1">
-                            <img src="https://gamepi.netlify.app/1v1lol.jpg" alt="">
-                            <div class="overlay"></div>
-                            <p class="title">1v1.lol</p>
-                        </div>
-                        <div class="game-card" id="game-1">
-                            <img src="https://m.media-amazon.com/images/I/41RCIHMHFDL.png" alt="">
-                            <div class="overlay"></div>
-                            <p class="title">2048</p>
-                        </div>
-                        <div class="game-card" id="game-1">
-                            <img src="https://www.meeplemountain.com/wp-content/uploads/2018/07/jetpack-joyride-review-header.jpg"
-                                alt="">
-                            <div class="overlay"></div>
-                            <p class="title">Jetpack Joyriders</p>
-                        </div>
                         <div class="game-card" id="game-1">
                             <img src="https://gamepi.netlify.app/1v1lol.jpg" alt="">
                             <div class="overlay"></div>
@@ -312,6 +361,9 @@
             const leftBtn = carousel.querySelector(".scroll-button.left");
             const rightBtn = carousel.querySelector(".scroll-button.right");
 
+            if (!leftBtn || !rightBtn)
+                continue;
+
             carousel.scrollLeft <= 0 ? leftBtn.disabled = true : leftBtn.disabled = false;
             carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth ? rightBtn.disabled = true : rightBtn.disabled = false
 
@@ -351,6 +403,33 @@
 
         function vwToPx(vw) {
             return (vw / 100) * window.innerWidth;
+        }
+
+        if (navigator.getBattery) {
+            navigator.getBattery().then(function (battery) {
+                const batteryLevelSpan = document.getElementById("battery-level");
+
+                function updateBatteryInfo() {
+                    const level = Math.round(battery.level * 100);
+                    batteryLevelSpan.textContent = level + "%";
+                }
+
+                // Initial call
+                updateBatteryInfo();
+
+                // Update when battery level changes
+                battery.addEventListener("levelchange", updateBatteryInfo);
+
+                // Update when charging status changes
+                battery.addEventListener("chargingchange", () => {
+                    updateBatteryInfo();
+                    if (battery.charging) {
+                        batteryLevelSpan.textContent += " ⚡"; // add charging icon
+                    }
+                });
+            });
+        } else {
+            document.getElementById("battery-level").textContent = "N/A";
         }
     </script>
 
