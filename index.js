@@ -26,7 +26,6 @@ app.use(express.static("public", {
     extensions: ["html"]
 }));
 
-// --- csrf middleware shit ---
 app.use((req, res, next) => {
     if (!["POST", "PUT", "PATCH", "DELETE"].includes(req.method)) {
         return next();
@@ -49,7 +48,6 @@ app.use((req, res, next) => {
     next();
 });
 
-// --- fuckass api ---
 app.post('/syn/browser-key', (req, res) => {
     const information = {
         key: randomBytes(8).toString('hex'),

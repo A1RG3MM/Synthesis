@@ -17,7 +17,7 @@
         <nav class="nav-bar-group">
             <div class="nav-bar align-left">
                 <h2 class="synthesis-text">Synthesis</h2>
-                <p style="user-select: none; font-size: 1vw; padding: 0.5vw;">[v1.0]</p>
+                <p style="user-select: none; font-size: 1vw; padding: 0.5vw;">[v1.0.0]</p>
             </div>
             <div class="nav-bar align-center">
                 <button class="nav-bar-btn">
@@ -80,25 +80,40 @@
             </div>
         </nav>
         <div class="main-frame">
-            <div class="page proxy" style="display: none;">
-
+            <br><br><br>
+            <div class="page proxy">
+                <div class="tabs-list">
+                    <div class="tab">
+                        <img src="https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=128" alt="">
+                        <span>Duck - Google Search</span>
+                        <p>×</p>
+                    </div>
+                    <div class="tab active-tab">
+                        <img src="https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=128" alt="">
+                        <span>i shit my pants - Google Search</span>
+                        <p>×</p>
+                    </div>
+                    <div class="tab">
+                        <img src="https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=128" alt="">
+                        <span>pemboy forn - Google Search</span>
+                        <p>×</p>
+                    </div>
+                    <div class="tab">
+                        <img src="https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=128" alt="">
+                        <span>cornhub - Google Search</span>
+                        <p>×</p>
+                    </div>
+                </div>
             </div>
-            <div class="page games">
-                <br><br><br>
+            <div class="page games" style="display: none;">
                 <h2>- Total games: 99 -</h2>
-                <div class="search-bar-wrapper">
-                    <input type="text" placeholder="Search a game..." class="search-bar" id="game-search-bar">
+                <p id="veryInspiringQuotes">"idk how long it took me to finish this project"</p>
+                <div class="search-bar-components">
+                    <div class="search-bar-wrapper">
+                        <input type="text" placeholder="Search a game..." class="search-bar" id="game-search-bar">
+                    </div>
                     <button class="reg-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-dices-icon lucide-dices">
-                            <rect width="12" height="12" x="2" y="10" rx="2" ry="2" />
-                            <path d="m17.92 14 3.5-3.5a2.24 2.24 0 0 0 0-3l-5-4.92a2.24 2.24 0 0 0-3 0L10 6" />
-                            <path d="M6 18h.01" />
-                            <path d="M10 14h.01" />
-                            <path d="M15 6h.01" />
-                            <path d="M18 9h.01" />
-                        </svg>
+                        <i class="fa-solid fa-dice"></i>
                         <span>Play Random Game</span>
                     </button>
                 </div>
@@ -352,86 +367,7 @@
             </div>
         </div>
     </div>
-    <div id="syn-particles"></div>
-    <script src="./scripts/particles.js"></script>
-    <script>
-        const carousels = document.querySelectorAll(".game-carousel");
-
-        for (const carousel of carousels) {
-            const leftBtn = carousel.querySelector(".scroll-button.left");
-            const rightBtn = carousel.querySelector(".scroll-button.right");
-
-            if (!leftBtn || !rightBtn)
-                continue;
-
-            carousel.scrollLeft <= 0 ? leftBtn.disabled = true : leftBtn.disabled = false;
-            carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth ? rightBtn.disabled = true : rightBtn.disabled = false
-
-            leftBtn.addEventListener("click", () => {
-                carousel.scrollBy({ left: -vwToPx(50), behavior: "smooth" });
-            });
-
-            rightBtn.addEventListener("click", () => {
-                carousel.scrollBy({ left: vwToPx(50), behavior: "smooth" });
-            });
-
-            carousel.addEventListener("scroll", () => {
-                carousel.scrollLeft <= 0 ? leftBtn.disabled = true : leftBtn.disabled = false;
-                carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth ? rightBtn.disabled = true : rightBtn.disabled = false
-            });
-
-            window.addEventListener("resize", () => {
-                carousel.scrollLeft <= 0 ? leftBtn.disabled = true : leftBtn.disabled = false;
-                carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth ? rightBtn.disabled = true : rightBtn.disabled = false
-            });
-        }
-
-        function updateButtons(carousel, leftBtn, rightBtn) {
-        }
-
-        const observer = new IntersectionObserver(entries => {
-            for (const entry of entries) {
-                if (!entry.isIntersecting || entry.target.classList.contains('show'))
-                    continue;
-                entry.target.classList.add("show");
-            }
-        });
-
-        document.querySelectorAll('.game-card').forEach(card => {
-            observer.observe(card);
-        });
-
-        function vwToPx(vw) {
-            return (vw / 100) * window.innerWidth;
-        }
-
-        if (navigator.getBattery) {
-            navigator.getBattery().then(function (battery) {
-                const batteryLevelSpan = document.getElementById("battery-level");
-
-                function updateBatteryInfo() {
-                    const level = Math.round(battery.level * 100);
-                    batteryLevelSpan.textContent = level + "%";
-                }
-
-                // Initial call
-                updateBatteryInfo();
-
-                // Update when battery level changes
-                battery.addEventListener("levelchange", updateBatteryInfo);
-
-                // Update when charging status changes
-                battery.addEventListener("chargingchange", () => {
-                    updateBatteryInfo();
-                    if (battery.charging) {
-                        batteryLevelSpan.textContent += " ⚡"; // add charging icon
-                    }
-                });
-            });
-        } else {
-            document.getElementById("battery-level").textContent = "N/A";
-        }
-    </script>
+    <script src="./scripts/main.js"></script>
 
 </body>
 

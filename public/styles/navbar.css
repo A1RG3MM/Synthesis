@@ -1,4 +1,4 @@
-/* Nav Bar Group */
+/* nav bar group */
 .nav-bar-group {
     display: flex;
     justify-content: center;
@@ -19,14 +19,15 @@
     margin-left: auto;
 }
 
-/* Navigation Bar */
+
+/* navigation bar */
 .nav-bar {
     background: hsl(from var(--secondary-color) h s calc(l - 20));
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     border-radius: 1vw;
     padding: 0.25vw 0.25vh;
     font-size: 3vh;
@@ -48,7 +49,7 @@
     background-position: 0% 50%;
     z-index: -1;
     transition: opacity 0.3s ease;
-    animation: gradientGlow 3s linear infinite;
+    animation: grad_glow 3s linear infinite;
     filter: blur(12px);
     opacity: 0.5;
 }
@@ -109,7 +110,6 @@
 
 .nav-bar.align-left:hover {
     transform-origin: top left;
-    cursor: pointer;
     user-select: none;
 }
 
@@ -132,7 +132,6 @@
     align-items: center;
     margin: 0.5vw;
     transition: 0.4s ease;
-    cursor: pointer;
     position: relative;
     overflow: hidden;
 }
@@ -204,7 +203,7 @@
 }
 
 
-@keyframes gradientGlow {
+@keyframes grad_glow {
     0% {
         background-position: 0% 50%;
     }
@@ -214,14 +213,12 @@
     }
 }
 
-/*
-@keyframes anim_gradientShift {
+@keyframes zoom_out {
     from {
-        background-position: 0%;
+        transform: translate(240%, 425%) scale(4.5);
     }
 
     to {
-        background-position: -150%;
+        transform: none;
     }
 }
-*/
