@@ -8,7 +8,6 @@ import { fileURLToPath } from 'url';
 
 dotenv.config();
 
-const CSRF_TTL = 15 * 60 * 1000;
 const csrfTokens = new Map();
 const storedKeys = new Map();
 const activeBrowsers = new Map();
@@ -35,7 +34,7 @@ app.use((req, res, next) => {
 
     if (!token || !csrfTokens.has(token) || csrfTokens.get(token) < now) {
         const newToken = randomBytes(16).toString("hex");
-        csrfTokens.set(newToken, now + CSRF_TTL);
+        csrfTokens.set(newToken, now + 15 * 60 * 1000);
         for (const [t, exp] of csrfTokens.entries()) {
             if (exp < now) csrfTokens.delete(t);
         }
