@@ -1,7 +1,6 @@
 // a1rg3mm was here you scummy lil skids
 
 import { randomBytes } from 'crypto';
-import { ChemicalServer } from 'chemicaljs';
 import express from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
@@ -17,7 +16,7 @@ const activeBrowsers = new Map();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const [app] = new ChemicalServer();
+const app = express();
 const port = parseInt(process.env.PORT) || 3000;
 const views = path.join(__dirname, 'views');
 
